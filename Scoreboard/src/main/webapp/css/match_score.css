@@ -1,0 +1,116 @@
+@charset "UTF-8";
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form {
+	display: flex;
+    width: auto;
+    height: auto;
+    padding: 25px;
+    background-color: #333;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: medium;
+    border-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.name,
+.point,
+.tie_break,
+.set1,
+.set2,
+.set3 {
+	display: table-column;
+	font-size: 25px;
+	margin-left: 20px;
+	text-align: center;
+}
+
+.name{	
+	color: white;
+	text-align: left;
+}
+.point{	
+	color: green;
+	text-align: left;
+}
+.tie_break{	
+	color: yellow;
+}
+
+.set1{	
+	color: red;
+	margin-right: 40px;
+}
+.set2{	
+	color: red;
+	margin-right: 40px;
+}
+.set3{	
+	color: red;
+	margin-right: 40px;
+}
+
+.title {
+	font-size: 9px;
+}
+
+.form_title {
+    text-align: center;
+    color: green;
+    margin-bottom: 0 0 32px 0;
+    font-weight: normal;
+}
+
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 20%;
+    color: white;
+    padding: 10px 25px;
+    white-space: nowrap;
+    text-align: center;
+    text-decoration: solid;
+    font-weight: normal;
+    font-size: 10px;
+    margin: 3px 2px;
+    cursor: pointer;
+}
+
+.indentation {
+	margin-top: 35px;
+}
+.button-block{
+	margin-top: 34px;
+}
+
+.form_label {
+    color: #9e9e9e;
+    white-space: nowrap;
+    margin-right: 20px;
+}
+.form_input {
+    width: auto;
+    padding: 0 0 5px 0;
+    border: none;
+    color: white;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: transparent;
+    outline: none;
+}
+
+.block-winner {
+	display: inline-table;
+
+	color: white;
+}
