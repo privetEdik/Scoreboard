@@ -17,10 +17,13 @@ public enum ScoreInstance {
 	private static Map<UUID, MatchScoreModel> map;
 
 	public MatchScoreModel getInstance(UUID uuid) {
-		if ((map != null) && map.containsKey(uuid)) {
+		if(map == null) {
+			map = new HashMap<>();
+		}
+		if ( map.containsKey(uuid)) {
 			return map.get(uuid);
 		} else {
-			map = new HashMap<>();
+			//map = new HashMap<>();
 			List<Integer> list1 = new ArrayList<>(List.of(0,0));
 			List<Integer> list2 = new ArrayList<>(List.of(0,0));
 			List<Integer> list3 = new ArrayList<>(List.of(0,0));
@@ -37,6 +40,7 @@ public enum ScoreInstance {
 					new ArrayList<Status>());
 			//@formatter:on
 			map.put(uuid, matchScoreModel);
+		  
 			return matchScoreModel;
 		}
 

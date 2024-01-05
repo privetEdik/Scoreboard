@@ -2,6 +2,7 @@ package kettlebell.servlets;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ import kettlebell.service.calculation.MatchScoreCalculationService;
 import kettlebell.service.calculation.Status;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @WebServlet(name = "MatchScoreServlet", urlPatterns = "/match-score")
@@ -29,7 +31,10 @@ public class MatchScoreServlet extends HttpServlet {
 		uuid = UUID.fromString(request.getParameter("uuid"));
 		dto = new ViewAndClearStorageService(uuid).getModelToView();
 		getServletContext().setAttribute("dto", dto);
-		getServletContext().setAttribute("uuid", uuid);
+		Cookie cookie = new Cookie("uuid", uuid.toString());
+		cookie.setMaxAge(-1);
+		response.addCookie(cookie);
+		
 		getServletContext().setAttribute("status", Status.CONTINUE);
 
 		response.sendRedirect("match_score.jsp");
@@ -45,8 +50,9 @@ public class MatchScoreServlet extends HttpServlet {
 			return;
 		} else if (idPlayer.equals("0") || idPlayer.equals("1")) {
 			numberPlayer = Integer.parseInt(idPlayer);
-
-			uuid = (UUID) getServletContext().getAttribute("uuid");
+			Cookie[] cookies = request.getCookies();
+			
+			uuid = UUID.fromString(List.of(cookies).stream().filter(s->s.getName().equals("uuid")).findFirst().get().getValue());
 
 			calculationService = new MatchScoreCalculationService();
 			status = calculationService.getChangeScore(numberPlayer, uuid);
@@ -65,7 +71,7 @@ public class MatchScoreServlet extends HttpServlet {
 			response.sendRedirect("match_score.jsp");
 			return;
 		}
-
+	
 	}
 
 }
